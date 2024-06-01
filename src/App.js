@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
 import Button from '@mui/material/Button';
-import './App.css';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box'
+import { red } from '@mui/material/colors';
+// import './App.css';
+
 const App = () => {
   const[type,setType]=useState('');
-  const[amount,setAmount]=useState(0);
+  const[amount,setAmount]=useState();
   const[task,setTask]=useState([])
 
   const handleType=(e)=>{
@@ -31,17 +35,27 @@ const App = () => {
     setTask(task.filter((task)=>task.id!==id));
   }
   return (
-    <div className='container'>
+    <div className='container mx-auto' sx={{ m: 'auto' }} >
+    <Box
+  display="flex"
+  justifyContent="center"
+  alignItems="center"
+  minHeight="100vh"
+  minWidth="100%"
+  sx={{ border: 5 }}
+    >
     <div>
-      <h1>Expense Tracker</h1>
+      <h1 className='lg:bg-red-500 text-4xl font-extrabold' >Expense Tracker</h1>
       <div>
-       <input type='text' placeholder='Enter type' value={type} onChange={(e)=>handleType(e)} ></input>
+       {/* <input type='text' placeholder='Enter type' value={type} onChange={(e)=>handleType(e)} ></input> */}
+       <TextField id="standard-basic" sx={{ m: 'auto' }} label="Enter Type" variant="standard" type='text' placeholder='Enter type' value={type} onChange={(e)=>handleType(e)}/>
       </div>
       <div>
-      <input type='number' placeholder='Enter amount' value={amount} onChange={(e)=>handleAmount(e)}></input>
+      {/* <input type='number' placeholder='Enter amount' value={amount} onChange={(e)=>handleAmount(e)}></input> */}
+      <TextField id="standard-basic" sx={{ m: 'auto',mb:'1rem' }} label="Enter Amount" variant="standard" type='number' placeholder='Enter amount' value={amount} onChange={(e)=>handleAmount(e)}/>
       </div>
       <div>
-      <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      <Button variant="contained" sx={{ m: 'auto' }} onClick={handleSubmit}>Submit</Button>
       </div>
     </div>
     <div>
@@ -59,6 +73,8 @@ const App = () => {
 
       </div>
     </div>
+    </Box>
+
     </div>
   )
 }
